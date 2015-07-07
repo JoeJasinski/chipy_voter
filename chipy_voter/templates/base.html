@@ -1,0 +1,31 @@
+{% load staticfiles i18n %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        {% block meta_tags %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title %}{% trans "Chipy Voter" %}{% endblock %}
+        </title>
+        {% block stylesheets %}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        {% endblock %}
+        {% block javascript %}
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        {% endblock %}
+        {% block extra_head %}{% endblock %}
+    </head>
+    <body>
+        <header class="navbar navbar-fixed-top">
+
+        </header>
+        <div id="main" role="main">
+            <div class="container-fluid">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

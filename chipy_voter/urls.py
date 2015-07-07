@@ -17,5 +17,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^login/$', 'chipy_voter.apps.users.views.login'),
+    url(r'^logout/$', 'chipy_voter.apps.users.views.logout'),
     url(r'^admin/', include(admin.site.urls)),
+    url('topics/', include('vote_tool.urls', namespace='social')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 ]
