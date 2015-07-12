@@ -36,11 +36,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 
     'social.apps.django_app.default',
 
+    'sorl.thumbnail',
     'chipy_voter.apps.users',
-    'vote_tool',
+    'vote_tool.apps.VoteToolConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,7 +108,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
+MEDIA_URL = '/media/'
 
 AUTHENTICATION_BACKENDS = (
     # 'social.backends.open_id.OpenIdAuth',
@@ -120,8 +122,7 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_TWITTER_KEY = 'GigKk4103XfEFO6gR2VMg'
 SOCIAL_AUTH_TWITTER_SECRET = 'F6Z7ZSRYR1TZtqY1DntWiM99RItcgX5G6IPWtjgM'
 
-SOCIAL_AUTH_GOOGLE_OAUTH_KEY = ''
-SOCIAL_AUTH_GOOGLE_OAUTH_SECRET = ''
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'chipy_voter', "static"),
+)

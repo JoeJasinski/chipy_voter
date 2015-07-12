@@ -1,0 +1,32 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+&rsaquo; <a href="{% url opts|admin_urlname:'change' topic.id %}">{{ topic }}</a>
+&rsaquo; Votes
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div id="content-main">
+  <fieldset class="module aligned ">
+    {% for vote in topic.votes %}
+      <div class="form-row">
+        <div class="field-box">
+        {{ vote }}
+        </div>
+        <div class="field-box">
+        {{ vote.vote }}
+        </div>
+      </div>
+    {% empty %}
+      No votes yet.
+    {% endfor %}
+  </fieldset>
+</div>
+{% endblock %}

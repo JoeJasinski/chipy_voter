@@ -1,8 +1,67 @@
 {% extends "base.html" %}
-
+{% load thumbnail staticfiles %}
 
 {% block content %}
-<h1>JJJ</h1>
+<h1>{{ topic.title }}</h1>
+<p class="lead">{{ topic.description }}</p>
 
-{{ topic }}
+{% if topic.enable_card_view %}
+<a href="{% url 'topics:topic_view_card' topic.slug %}" class="btn btn-default" type="submit">
+    <span class="typcn typcn-th-large-outline"><span></a>
+{% endif %}
+{% if topic.enable_list_view %}
+<a href="{% url 'topics:topic_view' topic.slug %}" class="btn btn-default" type="submit">
+    <span class="typcn typcn-th-list-outline"><span></a>
+{% endif %}
+
+{% if view == "list" %}
+<div class="row">
+  <ul class="collection">
+  {% for choice in topic.choices %}
+  <li class="collection-item avatar">
+
+    {% if choice.picture %}
+    {% thumbnail choice.picture "100x100" crop="center" as im %}
+     <img class="" src="{% static im.url %}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+    {% endif %}
+    <a href="{{ choice.link }}" class="secondary-content"><i class="material-icons">{{ choice.get_link_text }}</i></a>
+
+    <span class="title">{{ choice.text }}</span>
+    <p>{{ choice.description }}</p>
+  </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+
+{% if view == "card" %}
+<div class="row">
+  {% for choice in topic.choices %}
+  <div class="col s6 grid-example">
+    <div class="card large">
+      <div class="card-image">
+
+      {% if choice.picture %}
+      {% thumbnail choice.picture "300x300" crop="center" as im %}
+       <img class="" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+      {% endthumbnail %}
+      {% endif %}
+
+        <span class="card-title">{{ choice.text }}</span>
+      </div>
+      <div class="card-content">
+        <p>{{ choice.description }}</p>
+      </div>
+      <div class="card-action">
+        Link: <a href="{{ choice.link }}">{{ choice.get_link_text }}</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+
 {% endblock %}
