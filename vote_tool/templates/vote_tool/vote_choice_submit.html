@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load thumbnail staticfiles bleach_tags %}
+
+
+{% block content %}
+<a href="{% url 'topics:topic_view' topic.slug %}">&lt; Back</a>
+
+<h1>{{ topic.title }}</h1>
+<p class="lead">{{ topic.description|bleach }}</p>
+{% if topic.submission_information %}
+<p class="lead">{{ topic.submission_information|bleach }}</p>
+{% endif %}
+
+<form action="." method="post" enctype="multipart/form-data">{% csrf_token %}
+{{ form }}
+<input type="submit" name="submit" value="submit">
+</form>
+
+{% endblock %}

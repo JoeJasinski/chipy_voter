@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 
     'social.apps.django_app.default',
 
+    'django_bleach',
     'sorl.thumbnail',
     'chipy_voter.apps.users',
     'vote_tool.apps.VoteToolConfig',
@@ -109,6 +110,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 AUTHENTICATION_BACKENDS = (
     # 'social.backends.open_id.OpenIdAuth',

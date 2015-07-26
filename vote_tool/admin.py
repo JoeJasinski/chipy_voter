@@ -49,7 +49,7 @@ class VotingTopicAdmin(admin.ModelAdmin):
 
 class VoteAdmin(admin.ModelAdmin):
     raw_id_fields = ['user']
-    list_display = ['get_topic']
+    list_display = ['get_topic', 'user', 'created_at', 'updated_at']
     readonly_fields = ['get_topic', 'created_at', 'updated_at']
 
     def get_topic(self, obj):

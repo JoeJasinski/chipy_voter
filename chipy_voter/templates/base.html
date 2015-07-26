@@ -12,26 +12,29 @@
         <!-- Latest compiled and minified CSS -->
         <link type="text/css" rel="stylesheet" href='{% static "vendor/materialize/bin/materialize.css" %}' media="screen,projection"/>
         <link rel='stylesheet' href='{% static "vendor/typicons/src/font/typicons.min.css" %}' />
+        <link rel='stylesheet' href='{% static "css/main.css" %}' />
         {% endblock %}
         {% block extra_head %}{% endblock %}
     </head>
     <body>
 
-        <nav class="orange lighten-1">
+        <nav class="blue darken-2">
           <div class="nav-wrapper">
-            <div class="col s12">
+            <div class="col s12 m6">
 
-                <a href="#" class="brand-logo">Logo</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><a href="">Sass</a></li>
-                  <li><a href="">Components</a></li>
-                  <li><a href="">JavaScript</a></li>
-                </ul>
+                <a href="/" class="brand-"><img src='{% static "images/chipmunk-sm.png" %}' alt="chipy"></a>
 
             </div>
           </div>
         </nav>
 
+        {% if messages %}
+        <ul class="messages valign-wrapper" >
+            {% for message in messages %}
+            <li{% if message.tags %} class="valign {{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 
         <div class="section no-pad-bot" id="index-banner">
           <div class="container">
@@ -40,7 +43,7 @@
           </div>
         </div>
 
-        <footer class="page-footer  orange lighten-1">
+        <footer class="page-footer blue darken-2">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -56,7 +59,7 @@
               </div>
             </div>
           </div>
-          <div class="footer-copyright  orange">
+          <div class="footer-copyright blue darken-3">
             <div class="container">
             © 2015 Chicago Python User Group: Source code available at Github
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>

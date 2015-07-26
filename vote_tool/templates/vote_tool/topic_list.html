@@ -1,34 +1,49 @@
 {% extends "base.html" %}
-{% load thumbnail staticfiles %}
+{% load thumbnail staticfiles bleach_tags %}
+
 
 {% block content %}
 <h1>{{ topic.title }}</h1>
-<p class="lead">{{ topic.description }}</p>
+<p class="lead">{{ topic.description|bleach }}</p>
+
+
+
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red" href="{% url 'topics:topic_submit' topic.slug %}">
+      <i class="large material-icons">+</i>
+    </a>
+  </div>
 
 {% if topic.enable_card_view %}
-<a href="{% url 'topics:topic_view_card' topic.slug %}" class="btn btn-default" type="submit">
+<a href="{% url 'topics:topic_view' topic.slug %}?view=card" class="btn btn-default" type="submit">
     <span class="typcn typcn-th-large-outline"><span></a>
 {% endif %}
 {% if topic.enable_list_view %}
-<a href="{% url 'topics:topic_view' topic.slug %}" class="btn btn-default" type="submit">
+<a href="{% url 'topics:topic_view' topic.slug %}?view=list" class="btn btn-default" type="submit">
     <span class="typcn typcn-th-list-outline"><span></a>
 {% endif %}
 
 {% if view == "list" %}
-<div class="row">
+<div class="topic-list row">
   <ul class="collection">
   {% for choice in topic.choices %}
   <li class="collection-item avatar">
 
     {% if choice.picture %}
     {% thumbnail choice.picture "100x100" crop="center" as im %}
-     <img class="" src="{% static im.url %}" width="{{ im.width }}" height="{{ im.height }}">
+     <img src="{% static im.url %}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
     {% endif %}
     <a href="{{ choice.link }}" class="secondary-content"><i class="material-icons">{{ choice.get_link_text }}</i></a>
 
     <span class="title">{{ choice.text }}</span>
     <p>{{ choice.description }}</p>
+
+    {% if topic.list_page_voting %}
+    <form action="{% url 'topics:topic_vote_view' topic.slug choice.id %}" method="post">{% csrf_token %}
+        <button class="btn waves-effect waves-light right-align" type="submit" name="action">Vote</button>
+    </form>
+    {% endif %}
   </li>
   {% endfor %}
   </ul>
@@ -39,7 +54,7 @@
 {% if view == "card" %}
 <div class="row">
   {% for choice in topic.choices %}
-  <div class="col s6 grid-example">
+  <div class="col s12 m6 grid-example">
     <div class="card large">
       <div class="card-image">
 
@@ -55,7 +70,14 @@
         <p>{{ choice.description }}</p>
       </div>
       <div class="card-action">
+        {% if topic.list_page_voting %}
+        <form action="{% url 'topics:topic_vote_view' topic.slug choice.id %}" method="post">{% csrf_token %}
+            <button class="btn waves-effect waves-light right-align" type="submit" name="action">Vote</button>
+        </form>
+        {% endif %}
+        {% if choice.link %}
         Link: <a href="{{ choice.link }}">{{ choice.get_link_text }}</a>
+        {% endif %}
       </div>
     </div>
   </div>

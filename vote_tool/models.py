@@ -24,6 +24,9 @@ class VotingTopic(MetaMixin, models.Model):
     title = models.CharField(max_length=64)
     slug = models.SlugField(max_length=64, unique=True)
     description = models.TextField(blank=True, null=True)
+    submission_information = models.TextField(
+        blank=True, null=True,
+        help_text="Information to provide to Choice submitters.")
 
     list_page_view = fields.MultiSelectField(
         default=[x[0] for x in VIEW_PAGE_CHOICES],
