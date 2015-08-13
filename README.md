@@ -48,6 +48,10 @@ Migrate the database
 # HEROKU DEPLOYMENT
 
     git push heroku master
+    heroku addons:create heroku-postgresql:hobby-dev
     heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-python
     heroku config:set SECRET_KEY="wn4hujnbjhijrujhujhjzhzadfadf"
+    heroku config:set DATABASE_URL="postgres://USER:PASS@HOST:5432/DB"
+    heroku config:set SOCIAL_AUTH_TWITTER_KEY=""
+    heroku config:set SOCIAL_AUTH_TWITTER_SECRET=""
     heroku run python manage.py collectstatic --noinput
