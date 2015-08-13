@@ -44,3 +44,10 @@ Copy .envs.example to .envs and edit:
 Migrate the database
 
     ./manage.py migrate
+
+# HEROKU DEPLOYMENT
+
+    git push heroku master
+    heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-python
+    heroku config:set SECRET_KEY="wn4hujnbjhijrujhujhjzhzadfadf"
+    heroku run python manage.py collectstatic --noinput
