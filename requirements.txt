@@ -4,5 +4,6 @@ django-bleach==0.3.0
 django-environ==0.3.0
 django-extensions
 gunicorn==19.1.1
+psycopg2==2.6.1
 python-social-auth==0.2.11
 sorl-thumbnail==12.3
