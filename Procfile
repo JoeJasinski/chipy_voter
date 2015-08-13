@@ -1,1 +1,1 @@
-web: gunicorn chipy_voter.wsgi --log-file -
+web: gunicorn chipy_voter.wsgi --log-file - 
