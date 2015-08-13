@@ -10,21 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import environ
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+env = environ.Env(
+    DEBUG=(bool, False),
+)
+environ.Env.read_env('.envs')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y!()#xmlctm%^jbavuu$hr_y16usw-7imo10@ks-b$1#sys^5l'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env("ALLOWED_HOSTS", cast=[str], default=['*'])
 
 
 # Application definition
@@ -36,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
+    'django.contrib.sites',
     'django_extensions',
 
     'social.apps.django_app.default',
@@ -84,10 +91,7 @@ WSGI_APPLICATION = 'chipy_voter.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': env.db(),
 }
 
 
@@ -121,8 +125,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_TWITTER_KEY = 'GigKk4103XfEFO6gR2VMg'
-SOCIAL_AUTH_TWITTER_SECRET = 'F6Z7ZSRYR1TZtqY1DntWiM99RItcgX5G6IPWtjgM'
+SOCIAL_AUTH_TWITTER_KEY = env('SOCIAL_AUTH_TWITTER_KEY') # = 'GigKk4103XfEFO6gR2VMg'
+SOCIAL_AUTH_TWITTER_SECRET = env('SOCIAL_AUTH_TWITTER_SECRET') # = 'F6Z7ZSRYR1TZtqY1DntWiM99RItcgX5G6IPWtjgM'
 
 
 STATICFILES_DIRS = (

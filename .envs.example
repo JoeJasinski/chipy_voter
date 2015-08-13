@@ -1,0 +1,6 @@
+SECRET_KEY="enter-secret-key"
+
+DATABASE_URL="sqlite:///my-local-sqlite.db"
+
+SOCIAL_AUTH_TWITTER_KEY=""
+SOCIAL_AUTH_TWITTER_SECRET=""

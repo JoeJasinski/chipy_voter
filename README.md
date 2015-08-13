@@ -36,3 +36,11 @@ Automatically detect changes to sass or react js and livereload
 Install or update bower packages in the 'static/vendor' dir
 
     bower install
+
+Copy .envs.example to .envs and edit:
+
+    cp .envs.example .envs
+
+Migrate the database
+
+    ./manage.py migrate
