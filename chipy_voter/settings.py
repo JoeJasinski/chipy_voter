@@ -31,6 +31,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS", cast=[str], default=['*'])
 
+SITE_ID=1
+
 
 # Application definition
 
