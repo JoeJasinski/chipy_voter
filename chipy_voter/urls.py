@@ -3,7 +3,6 @@ from django.conf.urls.static import static
 from django.conf.urls import include, url
 from django.contrib.flatpages import views
 from django.contrib import admin
-from chipy_voter.views import IndexView
 
 urlpatterns = [
     url(r'^login/$', 'chipy_voter.apps.users.views.login',),
