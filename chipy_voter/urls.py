@@ -11,6 +11,6 @@ urlpatterns = [
     url('topics/', include('vote_tool.urls', namespace='topics')),
     url('social/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^ckeditor/', include('ckeditor.urls')),
-    url(r'', views.flatpage, {"url": "/index/"}, name="index"),
+    url(r'/test/', views.flatpage, {"url": "/index/"}, name="index"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
