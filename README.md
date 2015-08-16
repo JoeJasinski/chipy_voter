@@ -55,3 +55,5 @@ Migrate the database
     heroku config:set SOCIAL_AUTH_TWITTER_KEY=""
     heroku config:set SOCIAL_AUTH_TWITTER_SECRET=""
     heroku run python manage.py collectstatic --noinput
+    heroku run python manage.py migrate
+    heroku run python manage.py createsuperuser
