@@ -79,6 +79,8 @@
       </div>
     </div>
   </div>
+  {% empty %}
+  <p>There are no approved choices yet.  <a href="{% url 'topics:topic_submit' topic.slug %}">Submit one!</a></p>
   {% endfor %}
 </div>
 {% endif %}
