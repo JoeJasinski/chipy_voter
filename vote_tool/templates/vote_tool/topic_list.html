@@ -43,6 +43,8 @@
     </form>
     {% endif %}
   </li>
+  {% empty %}
+  <p>There are no approved choices yet.  <a href="{% url 'topics:topic_submit' topic.slug %}">Submit one!</a></p>
   {% endfor %}
   </ul>
 </div>
