@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.conf.urls import url
 from django import forms
+from django.db import models
 from django.template.response import TemplateResponse
 from django.shortcuts import get_object_or_404
 from .models import VotingTopic, VoteChoice, Vote
+
+from ckeditor.widgets import CKEditorWidget
 
 
 class VotingTopicAdminForm(forms.ModelForm):
@@ -24,6 +27,10 @@ class VotingTopicAdmin(admin.ModelAdmin):
     form = VotingTopicAdminForm
     prepopulated_fields = {"slug": ("title",)}
     inlines = [VotingTopicInline, ]
+
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget}
+    }
 
     def get_urls(self):
         urls = super(VotingTopicAdmin, self).get_urls()

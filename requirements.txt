@@ -2,6 +2,7 @@ Django==1.8.3
 Pillow==2.9.0
 django-bleach==0.3.0
 django-environ==0.3.0
+django-ckeditor==4.5.1
 django-extensions
 gunicorn==19.1.1
 psycopg2==2.6.1

@@ -31,10 +31,23 @@ DEBUG = True
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS", cast=[str], default=['*'])
 
-SITE_ID=1
+SITE_ID = 1
 
 
 # Application definition
+THIRD_PARTY_APPS = (
+    'social.apps.django_app.default',
+
+    'ckeditor',
+    'django_bleach',
+    'sorl.thumbnail',
+    'chipy_voter.apps.users',
+)
+
+INTERNAL_APPS = (
+    'chipy_voter',
+    'vote_tool.apps.VoteToolConfig',
+)
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -46,14 +59,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.sites',
     'django_extensions',
-
-    'social.apps.django_app.default',
-
-    'django_bleach',
-    'sorl.thumbnail',
-    'chipy_voter.apps.users',
-    'vote_tool.apps.VoteToolConfig',
-)
+) + THIRD_PARTY_APPS + INTERNAL_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -118,7 +124,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploaded_media")
+
+CKEDITOR_UPLOAD_PATH = "ckeditor/"
 
 AUTHENTICATION_BACKENDS = (
     # 'social.backends.open_id.OpenIdAuth',
@@ -129,10 +137,14 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_TWITTER_KEY = env('SOCIAL_AUTH_TWITTER_KEY') # = 'GigKk4103XfEFO6gR2VMg'
-SOCIAL_AUTH_TWITTER_SECRET = env('SOCIAL_AUTH_TWITTER_SECRET') # = 'F6Z7ZSRYR1TZtqY1DntWiM99RItcgX5G6IPWtjgM'
+SOCIAL_AUTH_TWITTER_KEY = env('SOCIAL_AUTH_TWITTER_KEY')  # = 'GigKk4103XfEFO6gR2VMg'
+SOCIAL_AUTH_TWITTER_SECRET = env('SOCIAL_AUTH_TWITTER_SECRET')  # = 'F6Z7ZSRYR1TZtqY1DntWiM99RItcgX5G6IPWtjgM'
 
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'chipy_voter', "static"),
 )
+
+
+BLEACH_ALLOWED_TAGS = ['p', 'b', 'i', 'u', 'em', 'strong', 'a']
+BLEACH_ALLOWED_ATTRIBUTES = ['href', 'title', 'style']

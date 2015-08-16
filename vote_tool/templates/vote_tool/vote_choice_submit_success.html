@@ -6,7 +6,15 @@
 <a href="{% url 'topics:topic_view' topic.slug %}">&lt; Back</a>
 
 <h1>{{ topic.title }}</h1>
-<p class="lead">{{ topic.description|bleach }}</p>
+<p>Thank you for your submission!</p>
+
+{% if topic.require_approval %}
+<p>Before this is listed as a votable choice, this will topic will
+    approved by ChiPy.
+</p>
+{% endif %}
+
+<p class="lead">{{ topic.description|bleach|safe }}</p>
 
 
 

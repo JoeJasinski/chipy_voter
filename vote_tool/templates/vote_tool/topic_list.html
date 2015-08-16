@@ -4,9 +4,7 @@
 
 {% block content %}
 <h1>{{ topic.title }}</h1>
-<p class="lead">{{ topic.description|bleach }}</p>
-
-
+<p class="lead">{{ topic.description|bleach|safe }}</p>
 
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large red" href="{% url 'topics:topic_submit' topic.slug %}">
