@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
+from django.core.urlresolvers import reverse_lazy
 import environ
 import os
 
@@ -136,6 +137,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+LOGIN_URL=reverse_lazy("login")
 
 SOCIAL_AUTH_TWITTER_KEY = env('SOCIAL_AUTH_TWITTER_KEY')  # = 'GigKk4103XfEFO6gR2VMg'
 SOCIAL_AUTH_TWITTER_SECRET = env('SOCIAL_AUTH_TWITTER_SECRET')  # = 'F6Z7ZSRYR1TZtqY1DntWiM99RItcgX5G6IPWtjgM'

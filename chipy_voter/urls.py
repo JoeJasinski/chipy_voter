@@ -5,7 +5,7 @@ from django.contrib.flatpages import views
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^login/$', 'chipy_voter.apps.users.views.login',),
+    url(r'^login/$', 'chipy_voter.apps.users.views.login', name="login"),
     url(r'^logout/$', 'chipy_voter.apps.users.views.logout',),
     url(r'^admin/', include(admin.site.urls)),
     url('topics/', include('vote_tool.urls', namespace='topics')),
